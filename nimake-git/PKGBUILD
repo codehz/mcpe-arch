@@ -1,0 +1,28 @@
+pkgname=nimake-git
+pkgver=r1.7f58453
+pkgrel=1
+pkgdesc="A simple build system written in Nim"
+arch=('x86_64')
+license=('MIT')
+depends=()
+provides=('nimake')
+makedepends=('nim' 'nimble')
+source=('nimake-git::git+https://github.com/codehz/nimake#branch=master')
+md5sums=('SKIP')
+url='https://github.com/codehz/nimake'
+
+pkgver() {
+  cd "$pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$srcdir/$pkgname"
+  nimble build
+}
+
+package() {
+  mkdir -p $pkgdir/usr/bin
+  cp "$srcdir/$pkgname/nimake" "$pkgdir/usr/bin"
+  echo Biu~
+}

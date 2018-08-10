@@ -1,0 +1,28 @@
+pkgname=mcpeserver-core-git
+pkgver=0
+pkgrel=1
+pkgdesc="Minecraft PE Server Core"
+arch=('x86_64')
+license=('GPL')
+depends=()
+provides=('mcpeserver-core')
+makedepends=('mcpe-sdk' 'nimake' 'gcc' 'cmake')
+source=('mcpeserver-core-git::git+https://github.com/codehz/bedrockserver#branch=master')
+md5sums=('SKIP')
+url='https://github.com/codehz/bedrockserver'
+
+prepare() {
+  cd "$srcdir/$pkgname"
+  git submodule init
+  git submodule update
+}
+
+build() {
+  cd "$srcdir/$pkgname"
+  PATH=/opt/mcpe-sdk/bin:$PATH nimake build -v 5
+}
+
+package() {
+  install -Dm0755 "$srcdir/$pkgname/bin/bedrockserver" "$pkgdir/opt/mcpeserver-core/bedrockserver"
+  install -Dm0755 "$srcdir/$pkgname/bin/bridge.so" "$pkgdir/opt/mcpeserver-core/bridge.so"
+}

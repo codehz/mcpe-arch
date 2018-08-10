@@ -1,0 +1,20 @@
+pkgname=mcpe-sdk
+pkgver=0.1
+pkgrel=1
+pkgdesc="Android SDK custom build for minecraft pe server"
+arch=('x86_64')
+license=('GPL')
+depends=()
+makedepends=('android-ndk')
+source=()
+url='https://developer.android.com/ndk/'
+options=(!strip)
+# PKGEXT=.pkg.tar
+
+NDK=/opt/android-ndk
+
+package() {
+  mkdir -p "$pkgdir/opt/"
+  $NDK/build/tools/make_standalone_toolchain.py \
+    --arch x86 --api 21 --stl gnustl --install-dir "$pkgdir/opt/mcpe-sdk"
+}
