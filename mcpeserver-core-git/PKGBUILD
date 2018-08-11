@@ -1,5 +1,5 @@
 pkgname=mcpeserver-core-git
-pkgver=v0.1.1.r0.g89eb161
+pkgver=v0.1.1.r1.g2d628c7
 pkgrel=1
 pkgdesc="Minecraft PE Server Core"
 arch=('x86_64')
