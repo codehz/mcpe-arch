@@ -1,5 +1,5 @@
 pkgname=mcpeserver-core-git
-pkgver=0
+pkgver=v0.1.1.r0.g89eb161
 pkgrel=1
 pkgdesc="Minecraft PE Server Core"
 arch=('x86_64')
@@ -10,6 +10,11 @@ makedepends=('mcpe-sdk' 'nimake' 'gcc' 'cmake')
 source=('mcpeserver-core-git::git+https://github.com/codehz/bedrockserver#branch=master')
 md5sums=('SKIP')
 url='https://github.com/codehz/bedrockserver'
+
+pkgver() {
+  cd "$pkgname"
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
 
 prepare() {
   cd "$srcdir/$pkgname"
