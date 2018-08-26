@@ -1,14 +1,21 @@
 pkgname=mcpeserver
-pkgver=0.7.0
-pkgrel=15
+pkgver=0.7.4
+pkgrel=33
 pkgdesc="Minecraft PE Server Launcher"
 arch=('x86_64')
+install="$pkgname.install"
 license=('GPL')
-source=("https://$pkgrel-132561720-gh.circle-artifacts.com/0/go/src/github.com/codehz/mcpeserver/mcpeserver")
-md5sums=('187636294644a4e78fd1125ea3723f1d')
+source=("https://$pkgrel-132561720-gh.circle-artifacts.com/0/go/src/github.com/codehz/mcpeserver/"{mcpeserver,install/{mcpeserver{,-bus}.conf,mcpeserver@.service}})
+md5sums=('a0da179ebc21ad0dea06f5974cea3ebc'
+         '987e2acb47b56b487b91bcbe8188110c'
+         '597a45ec2a1a8ab4233532ce14f455b1'
+         '5dc85147324780246ab8d789b08e30b6')
 url='https://github.com/codehz/mcpeserver'
 options=(!strip)
 
 package() {
-  install -Dm0755 mcpeserver "$pkgdir/usr/bin/mcpeserver"
+  install -Dm0755 "$srcdir"/mcpeserver "$pkgdir/usr/bin/mcpeserver"
+  install -Dm0644 "$srcdir"/mcpeserver.conf "$pkgdir"/usr/lib/sysusers.d/mcpeserver.conf
+  install -Dm0644 "$srcdir"/mcpeserver-bus.conf "$pkgdir"/etc/dbus-1/system.d/mcpeserver.conf
+  install -Dm0644 "$srcdir"/mcpeserver@.service "$pkgdir"/usr/lib/systemd/system/mcpeserver@.service
 }

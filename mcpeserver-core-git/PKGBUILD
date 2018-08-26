@@ -1,10 +1,10 @@
 pkgname=mcpeserver-core-git
-pkgver=v0.1.1.r1.g2d628c7
-pkgrel=1
+pkgver=v0.1.5.r1.g9282c0c
+pkgrel=3
 pkgdesc="Minecraft PE Server Core"
 arch=('x86_64')
 license=('GPL')
-depends=()
+depends=(lib32-glibc lib32-gcc-libs lib32-systemd)
 provides=('mcpeserver-core')
 makedepends=('mcpe-sdk' 'nimake' 'gcc' 'cmake')
 source=('mcpeserver-core-git::git+https://github.com/codehz/bedrockserver#branch=master')
@@ -24,6 +24,7 @@ prepare() {
 
 build() {
   cd "$srcdir/$pkgname"
+  PATH=/opt/mcpe-sdk/bin:$PATH nimake clean -v 5
   PATH=/opt/mcpe-sdk/bin:$PATH nimake build -v 5
 }
 

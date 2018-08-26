@@ -1,0 +1,5 @@
+#!/bin/sh
+
+post_install() {
+  install -dm 0755 -o mcpeserver -g mcpeserver /srv/mcpeserver
+}
