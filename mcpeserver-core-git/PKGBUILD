@@ -1,10 +1,10 @@
 pkgname=mcpeserver-core-git
-pkgver=v0.1.5.r1.g9282c0c
-pkgrel=3
+pkgver=v0.1.6.r10.g22d4cc6
+pkgrel=2
 pkgdesc="Minecraft PE Server Core"
 arch=('x86_64')
 license=('GPL')
-depends=(lib32-glibc lib32-gcc-libs lib32-systemd)
+depends=(lib32-gcc-libs lib32-glibc lib32-gmp lib32-libffi lib32-libgcrypt lib32-libgpg-error lib32-libltdl lib32-libunistring lib32-systemd lib32-xz)
 provides=('mcpeserver-core')
 makedepends=('mcpe-sdk' 'nimake' 'gcc' 'cmake')
 source=('mcpeserver-core-git::git+https://github.com/codehz/bedrockserver#branch=master')

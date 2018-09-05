@@ -1,15 +1,14 @@
 pkgname=mcpeserver
-pkgver=0.7.4
-pkgrel=33
+pkgver=0.7.5
+pkgrel=43
 pkgdesc="Minecraft PE Server Launcher"
 arch=('x86_64')
-install="$pkgname.install"
 license=('GPL')
 source=("https://$pkgrel-132561720-gh.circle-artifacts.com/0/go/src/github.com/codehz/mcpeserver/"{mcpeserver,install/{mcpeserver{,-bus}.conf,mcpeserver@.service}})
-md5sums=('a0da179ebc21ad0dea06f5974cea3ebc'
+md5sums=('6614a533a29e1db3b6d9e0109ab5aafa'
          '987e2acb47b56b487b91bcbe8188110c'
          '597a45ec2a1a8ab4233532ce14f455b1'
-         '5dc85147324780246ab8d789b08e30b6')
+         '2193cc2e388f453f00fc4c18df1496fa')
 url='https://github.com/codehz/mcpeserver'
 options=(!strip)
 
